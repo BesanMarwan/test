@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+
+<body>
+    <div id="app" style="width: 100%;margin: auto;text-align: center;margin-top: 100px">
+
+        <section v-show="InprogressAssigments.lenght">
+            <h2 class="mb-2 ">In Progress Assigments</h2>
+            <ul class="list-unstyled">
+                <li v-for="assigment in InprogressAssigments" :key="assigment.id">
+                    <input type="checkbox" class="mx-2" v-model="assigment.complete" />
+                    {{assigment.name}}
+                </li>
+            </ul>
+        </section>
+
+        <div class="seperator"></div>
+
+        <section v-show="CompletedAssigments.length" class="mt-5">
+            <h2 class="mb-2 ">Completed</h2>
+            <ul class="list-unstyled">
+                <li v-for="assigment in CompletedAssigments" :key="assigment.id">
+                    <input type="checkbox" class="mx-2" v-model="assigment.complete" />
+                    {{assigment.name}}
+                </li>
+            </ul>
+        </section>
+
+
+    </div>
+
+    <script>
+        let app = {
+
+            data() {
+
+                return {
+                    assigments: [{
+                            id: 1,
+                            name: "Task1",
+                            complete: false
+                        },
+                        {
+                            id: 2,
+                            name: "Task2",
+                            complete: false
+                        },
+                        {
+                            id: 3,
+                            name: "Task3",
+                            complete: false
+                        },
+                        {
+                            id: 4,
+                            name: "Task4",
+                            complete: false
+                        },
+
+                    ]
+
+                }
+
+            },
+            computed() {
+                CompletedAssigments() {
+                    return this.assigments.filter(assigment => assigment.complete)
+                }
+                InprogressAssigments() {
+                    return this.assigments.filter(assigment => ! assigment.complete)
+                }
+            }
+
+        };
+        Vue.createApp(app).mount('#app');
+
+    </script>
+</body>
+
+
+</html>
