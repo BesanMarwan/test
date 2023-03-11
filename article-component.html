@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+
+</head>
+
+<body>
+    <div id="app" style="width: 100%;margin: auto;text-align: center;margin-top: 100px">
+
+        <app-article v-for="post in posts" :title="post.title" :author="post.author"></app-article>
+    </div>
+
+
+
+
+    <script>
+        //local register component
+        Vue.component('app-article', {
+            data: function() {
+                return {
+                    count: 0
+                }
+            },
+            props: ['title', 'author'],
+            template: '<p>Article title is <strong>{{title}} </strong>Written by <strong>{{author}}<strong>',
+        })
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                    posts: [{
+                            id: 1,
+                            title: "Post 1",
+                            author: "author 1"
+                        },
+                        {
+                            id: 2,
+                            title: "Post 2",
+                            author: "author 2"
+                        },
+                        {
+                            id: 3,
+                            title: "Post 3",
+                            author: "author 3"
+                        },
+                        {
+                            id: 4,
+                            title: "Post 4",
+                            author: "author 4"
+                        },
+                    ]
+            }
+        })
+
+//        Vue.createApp({
+//
+//            data() {
+//                return {
+//                    posts: [{
+//                            id: 1,
+//                            title: "Post 1",
+//                            author: "author 1"
+//                        },
+//                        {
+//                            id: 2,
+//                            title: "Post 2",
+//                            author: "author 2"
+//                        },
+//                        {
+//                            id: 3,
+//                            title: "Post 3",
+//                            author: "author 3"
+//                        },
+//                        {
+//                            id: 4,
+//                            title: "Post 4",
+//                            author: "author 4"
+//                        },
+//                    ]
+//                }
+//            }
+//        }).mount('#app');
+
+    </script>
+</body>
+
+
+</html>

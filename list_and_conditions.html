@@ -12,10 +12,10 @@
 <body>
     <div id="app" style="width: 100%;margin: auto;text-align: center;margin-top: 100px">
 
-        <section v-show="InprogressAssigments.lenght">
+        <section v-show="inprogressAssigments.lenght != 0">
             <h2 class="mb-2 ">In Progress Assigments</h2>
             <ul class="list-unstyled">
-                <li v-for="assigment in InprogressAssigments" :key="assigment.id">
+                <li v-for="assigment in inprogressAssigments" :key="assigment.id">
                     <input type="checkbox" class="mx-2" v-model="assigment.complete" />
                     {{assigment.name}}
                 </li>
@@ -24,10 +24,10 @@
 
         <div class="seperator"></div>
 
-        <section v-show="CompletedAssigments.length" class="mt-5">
+        <section v-show="completedAssigments.length != 0" class="mt-5">
             <h2 class="mb-2 ">Completed</h2>
             <ul class="list-unstyled">
-                <li v-for="assigment in CompletedAssigments" :key="assigment.id">
+                <li v-for="assigment in completedAssigments" :key="assigment.id">
                     <input type="checkbox" class="mx-2" v-model="assigment.complete" />
                     {{assigment.name}}
                 </li>
@@ -69,12 +69,12 @@
                 }
 
             },
-            computed() {
-                CompletedAssigments() {
+            computed: {
+                completedAssigments() {
                     return this.assigments.filter(assigment => assigment.complete)
-                }
-                InprogressAssigments() {
-                    return this.assigments.filter(assigment => ! assigment.complete)
+                },
+                inprogressAssigments() {
+                    return this.assigments.filter(assigment => !assigment.complete)
                 }
             }
 
