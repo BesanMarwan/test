@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+
+<body>
+    <div id="app" style="width: 100%;margin: auto;text-align: center;margin-top: 100px">
+
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <form action="">
+                    <input class="form-control form-control-lg" v-model="ils" type="text" placeholder="ILS" aria-label=".form-control-lg example">
+                    <input class="form-control form-control-lg mt-5" v-model="usd" type="text" placeholder="USD " aria-label=".form-control-lg example">
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let app = {
+
+            data() {
+
+                return {
+
+                    usd  : 0,
+                    ils  : 0,
+                }
+
+            },
+            computed: {
+
+            },
+            watch :{
+                ils:function(v){
+                    this.usd = v/3.6;
+                },
+                   usd:function(v){
+                    this.ils = v*3.6;
+                }
+            }
+
+        };
+        Vue.createApp(app).mount('#app');
+
+    </script>
+</body>
+
+
+</html>

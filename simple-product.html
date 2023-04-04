@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+    <div class="nav-bar"></div>
+    <div id="app">
+        <div class="product">
+            <div class="product-image">
+                <img v-bind:src="image" :alt="description">
+            </div>
+            <div class="product-info">
+                <h1>{{title}}</h1>
+                <p>{{ description }}</p>
+                <!--notes
+                  **  the difference between the v-if and v-show 
+                  **  the v-if the element if  the condition isn't  met the component not exists in the page  
+                  **  but the v-show the element exists but hidden
+                    -->
+                <p v-if="inventory > 10" class="badge badge-success">In Stock</p>
+                <p v-else-if="inventory <=10 && inventory > 0" class="badge badge-warning">Almost sold out</p>
+                <p v-else class="badge badge-danger">Out Of Stock</p>
+                <ul>
+                    <li v-for="(detail, index) in details"> {{detail}}</li>
+                </ul>
+                <div class="color-box" v-for="(variant, index) in variants" :key="variant.variantId" :style="{ backgroundColor: variant.variantColor }" @mouseover="updateProductImage(index)">
+                </div>
+
+
+
+                <button v-on:click="addToCart" :disabled="! inStock" :class="{disabledButton : !inStock}">Add to cart</button>
+                <div class="cart">
+                    Cart ({{cart}})
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+
+
+</body>
+
+</html>
