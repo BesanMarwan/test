@@ -11,6 +11,9 @@
 <body>
     <div class="nav-bar"></div>
     <div id="app">
+        <div class="cart">
+            Cart ({{cart.length}})
+        </div>
         <div class="product">
             <div class="product-image">
                 <img v-bind:src="image" :alt="description">
@@ -32,16 +35,20 @@
                 <div class="color-box" v-for="(variant, index) in variants" :key="variant.variantId" :style="{ backgroundColor: variant.variantColor }" @mouseover="updateProductImage(index)">
                 </div>
 
+                <button v-on:click="addToCart(variants[selectedVariant].variantId)" :disabled="! inStock" :class="{disabledButton : ! inStock}">Add to cart</button>
 
+                <button id="removeButton" v-on:click="removeFromCart(variants[selectedVariant].variantI)" :disabled="emptyCart" :class="{disabledButton : emptyCart}">Remove From Cart</button>
 
-                <button v-on:click="addToCart" :disabled="! inStock" :class="{disabledButton : !inStock}">Add to cart</button>
-                <div class="cart">
-                    Cart ({{cart}})
-                </div>
 
             </div>
 
         </div>
+
+        <div class="m-5"></div>
+
+        <product-tabs :reviews="reviews"></product-tabs>
+
+
 
     </div>
 
